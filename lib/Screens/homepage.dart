@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:leftright/Screens/mainwidget.dart';
 import 'package:leftright/Wigets/dogimage.dart';
 import 'package:leftright/Wigets/jokepage.dart';
-import 'package:leftright/model/providerModel.dart';
+import 'package:leftright/model/providermodel.dart';
 import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:leftright/model/jokomodel.dart';
-import 'package:leftright/model/providerModel.dart';
+import 'package:leftright/model/providermodel.dart';
 import 'package:leftright/model/sharemodel.dart';
 import 'package:provider/provider.dart';
 
@@ -33,9 +33,9 @@ class _JokePageState extends State<JokePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   //const Padding(padding: EdgeInsets.all()),
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
-                    width: MediaQuery.of(context).size.width / 2,
+                    width: MediaQuery.of(context).size.width / 1.2,
                     child: Center(
                         child: Text(
                       snapshot.data!.randomJoke.toString(),

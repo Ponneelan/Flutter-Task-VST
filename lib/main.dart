@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'model/providerModel.dart';
+import 'model/providermodel.dart';
 import 'Screens/homepage.dart';
 
 void main() {

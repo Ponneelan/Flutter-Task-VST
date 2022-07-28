@@ -1,7 +1,6 @@
-import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:leftright/model/dogmodel.dart';
-import 'package:leftright/model/providerModel.dart';
+import 'package:leftright/model/providermodel.dart';
 import 'package:leftright/model/sharemodel.dart';
 import 'package:provider/provider.dart';
 
@@ -32,11 +31,11 @@ class _DogPictureState extends State<DogPicture> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height / 2,
                       width: MediaQuery.of(context).size.width / 1.5,
                       child: Image.network(
-                        snapshot.data!.dogImageLink,
+                        snapshot.data!.dogImageLink.toString(),
                         fit: BoxFit.fill,
                       ),
                     ),

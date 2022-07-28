@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:leftright/model/providerModel.dart';
+import 'package:leftright/model/providermodel.dart';
 import 'package:provider/provider.dart';
 
 class FirstWidget extends StatefulWidget {
