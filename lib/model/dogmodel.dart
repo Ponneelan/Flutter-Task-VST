@@ -3,11 +3,11 @@ import 'package:dio/dio.dart';
 import 'dart:convert';
 
 class DogModel {
-  final String DogImageLink;
-  DogModel({required this.DogImageLink});
+  final String dogImageLink;
+  DogModel({required this.dogImageLink});
 
   factory DogModel.fromJson(Map<String, dynamic> json) {
-    return DogModel(DogImageLink: json['message']);
+    return DogModel(dogImageLink: json['message']);
   }
 }
 

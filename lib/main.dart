@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import 'model/providerModel.dart';
 import 'Screens/homepage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (context) => GetWidget())],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -16,7 +20,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Homepage(),
     );
   }

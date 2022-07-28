@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:leftright/Wigets/Dogimage.dart';
-import 'package:leftright/Wigets/Jokepage.dart';
+import 'package:leftright/model/providerModel.dart';
+import 'package:provider/provider.dart';
 
-class first extends StatefulWidget {
-  first({Key? key}) : super(key: key);
+class FirstWidget extends StatefulWidget {
+  const FirstWidget({Key? key}) : super(key: key);
 
   @override
-  State<first> createState() => _firstState();
+  State<FirstWidget> createState() => _FirstWidgetState();
 }
 
-class _firstState extends State<first> {
+class _FirstWidgetState extends State<FirstWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -28,8 +28,8 @@ class _firstState extends State<first> {
             ),
           ),
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => JokePage()));
+            Provider.of<GetWidget>(context, listen: false)
+                .changeSelectedIndex(1);
           },
         )),
         Expanded(
@@ -37,7 +37,7 @@ class _firstState extends State<first> {
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width / 2,
-            color: Color.fromRGBO(255, 255, 255, 1),
+            color: const Color.fromRGBO(255, 255, 255, 1),
             child: const Center(
               child: Text(
                 'Dog',
@@ -46,8 +46,8 @@ class _firstState extends State<first> {
             ),
           ),
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => DogPicture()));
+            Provider.of<GetWidget>(context, listen: false)
+                .changeSelectedIndex(2);
           },
         )),
       ],

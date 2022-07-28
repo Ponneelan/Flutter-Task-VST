@@ -1,26 +1,24 @@
+import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
 import 'package:leftright/model/dogmodel.dart';
-import 'package:share/share.dart';
+import 'package:leftright/model/providerModel.dart';
+import 'package:leftright/model/sharemodel.dart';
+import 'package:provider/provider.dart';
 
 class DogPicture extends StatefulWidget {
-  DogPicture({Key? key}) : super(key: key);
+  const DogPicture({Key? key}) : super(key: key);
 
   @override
   State<DogPicture> createState() => _DogPictureState();
 }
 
 class _DogPictureState extends State<DogPicture> {
+  ModelShare ms = ModelShare();
   late Future<DogModel> futureDogImage;
   @override
   void initState() {
     super.initState();
     futureDogImage = getDog();
-  }
-
-  _onShare(BuildContext context, String JokeText) async {
-    final RenderBox box = context.findRenderObject() as RenderBox;
-    await Share.share(JokeText,
-        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size);
   }
 
   @override
@@ -33,34 +31,40 @@ class _DogPictureState extends State<DogPicture> {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  //crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Container(
-                      height: 500,
-                      width: 500,
-                      child: Image.network(snapshot.data!.DogImageLink),
+                      height: MediaQuery.of(context).size.height / 2,
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      child: Image.network(
+                        snapshot.data!.dogImageLink,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     const SizedBox(
                       height: 30,
                     ),
                     ElevatedButton(
-                        onPressed: () => _onShare(
-                            context, snapshot.data!.DogImageLink.toString()),
+                        onPressed: () => ms.onShare(
+                            context, snapshot.data!.dogImageLink.toString()),
                         child: const Text('Sent'))
                   ],
                 ),
               );
             } else if (snapshot.hasError) {
-              return const Text('error');
+              return const Center(
+                child: Text('Error'),
+              );
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
           })),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.pop(context);
-      }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Provider.of<GetWidget>(context, listen: false)
+            .changeSelectedIndex(0),
+        child: const Icon(Icons.home),
+      ),
     );
   }
 }
