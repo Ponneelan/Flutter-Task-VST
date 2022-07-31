@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:leftright/model/dogmodel.dart';
+import 'package:leftright/model/jokomodel.dart';
 import 'package:leftright/model/providermodel.dart';
 import 'package:provider/provider.dart';
 
-class FirstWidget extends StatefulWidget {
-  const FirstWidget({Key? key}) : super(key: key);
+class MainWidget extends StatefulWidget {
+  const MainWidget({Key? key}) : super(key: key);
 
   @override
-  State<FirstWidget> createState() => _FirstWidgetState();
+  State<MainWidget> createState() => _MainWidgetState();
 }
 
-class _FirstWidgetState extends State<FirstWidget> {
+class _MainWidgetState extends State<MainWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -27,7 +29,10 @@ class _FirstWidgetState extends State<FirstWidget> {
               ),
             ),
           ),
-          onTap: () {
+          onTap: () async {
+            await getJoke(context);
+            Provider.of<GetWidget>(context, listen: false)
+                .changeSelectedWidget(0);
             Provider.of<GetWidget>(context, listen: false)
                 .changeSelectedIndex(1);
           },
@@ -45,9 +50,13 @@ class _FirstWidgetState extends State<FirstWidget> {
               ),
             ),
           ),
-          onTap: () {
+          onTap: () async {
+            await getDog(context);
+
             Provider.of<GetWidget>(context, listen: false)
-                .changeSelectedIndex(2);
+                .changeSelectedWidget(1);
+            Provider.of<GetWidget>(context, listen: false)
+                .changeSelectedIndex(1);
           },
         )),
       ],

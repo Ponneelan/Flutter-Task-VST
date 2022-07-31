@@ -1,5 +1,9 @@
-import 'package:dio/dio.dart';
 import 'dart:convert';
+
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:leftright/model/providermodel.dart';
+import 'package:provider/provider.dart';
 
 class JokeModel {
   final String randomJoke;
@@ -9,12 +13,14 @@ class JokeModel {
   }
 }
 
-var dio1 = Dio();
-
-Future<JokeModel> getJoke() async {
-  var res = await dio1.get("https://api.chucknorris.io/jokes/random");
+var dio = Dio();
+Future<JokeModel> getJoke(BuildContext ctx) async {
+  var res = await dio.get("https://api.chucknorris.io/jokes/random");
   if (res.statusCode == 200) {
-    return JokeModel.fromJson(json.decode(res.toString()));
+    var result = JokeModel.fromJson(json.decode(res.toString()));
+    Provider.of<GetWidget>(ctx, listen: false)
+        .updateJoke(result.randomJoke.toString());
+    return result;
   } else {
     throw Exception("Bad Request");
   }

@@ -12,57 +12,30 @@ class DogPicture extends StatefulWidget {
 }
 
 class _DogPictureState extends State<DogPicture> {
-  ModelShare ms = ModelShare();
-  late Future<DogModel> futureDogImage;
-  @override
-  void initState() {
-    super.initState();
-    futureDogImage = getDog();
-  }
-
+  // var dogFuture = FutureBuilder<DogModel>(
+  //     future: getDog(),
+  //     builder: ((context, snapshot) {
+  //       if (snapshot.hasData) {
+  //         return Image.network(
+  //           snapshot.data!.dogImageLink.toString(),
+  //           height: MediaQuery.of(context).size.height / 2,
+  //           width: MediaQuery.of(context).size.width / 2,
+  //           fit: BoxFit.fill,
+  //         );
+  //       } else if (snapshot.hasError) {
+  //         return const Text('Error');
+  //       } else {
+  //         return const CircularProgressIndicator();
+  //       }
+  //     }));
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FutureBuilder<DogModel>(
-          future: futureDogImage,
-          builder: ((context, snapshot) {
-            if (snapshot.hasData) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height / 2,
-                      width: MediaQuery.of(context).size.width / 1.5,
-                      child: Image.network(
-                        snapshot.data!.dogImageLink.toString(),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    ElevatedButton(
-                        onPressed: () => ms.onShare(
-                            context, snapshot.data!.dogImageLink.toString()),
-                        child: const Text('Sent'))
-                  ],
-                ),
-              );
-            } else if (snapshot.hasError) {
-              return const Center(
-                child: Text('Error'),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          })),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Provider.of<GetWidget>(context, listen: false)
-            .changeSelectedIndex(0),
-        child: const Icon(Icons.home),
+    return Container(
+      height: MediaQuery.of(context).size.height / 2,
+      width: MediaQuery.of(context).size.width / 1.3,
+      child: Image.network(
+        Provider.of<GetWidget>(context, listen: true).Link.toString(),
+        fit: BoxFit.fill,
       ),
     );
   }

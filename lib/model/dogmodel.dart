@@ -1,6 +1,10 @@
-import 'package:dio/dio.dart';
-
 import 'dart:convert';
+
+import 'package:flutter/widgets.dart';
+import 'package:leftright/model/providermodel.dart';
+import 'package:provider/provider.dart';
+
+import 'jokomodel.dart';
 
 class DogModel {
   final String dogImageLink;
@@ -11,12 +15,14 @@ class DogModel {
   }
 }
 
-var dio = Dio();
-
-Future<DogModel> getDog() async {
+var _res;
+Future<DogModel> getDog(BuildContext ctx) async {
   var response = await dio.get('https://dog.ceo/api/breeds/image/random');
   if (response.statusCode == 200) {
-    return DogModel.fromJson(json.decode(response.toString()));
+    _res = DogModel.fromJson(json.decode(response.toString()));
+    Provider.of<GetWidget>(ctx, listen: false)
+        .updatLink(_res.dogImageLink.toString());
+    return _res;
   } else {
     throw Exception('Bad request');
   }
