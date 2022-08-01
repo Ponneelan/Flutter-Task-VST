@@ -39,7 +39,6 @@ class OutputPageState extends State<OutputPage> {
             SizedBox(
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
-              //color: Color.fromARGB(255, 175, 213, 244),
               child: Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Center(child: out),
@@ -53,7 +52,6 @@ class OutputPageState extends State<OutputPage> {
                 color: Colors.transparent,
                 child: GestureDetector(
                   onTap: () async {
-                    //print('left');
                     if (index == 0) {
                       Provider.of<GetWidget>(context, listen: false)
                           .changeSelectedWidget(2);
@@ -79,7 +77,6 @@ class OutputPageState extends State<OutputPage> {
                 color: Colors.transparent,
                 child: GestureDetector(
                   onTap: () async {
-                    //print('right');
                     if (index == 1) {
                       Provider.of<GetWidget>(context, listen: false)
                           .changeSelectedWidget(2);
@@ -87,8 +84,6 @@ class OutputPageState extends State<OutputPage> {
                       Provider.of<GetWidget>(context, listen: false)
                           .changeSelectedWidget(1);
                     } else {
-                      // print('same');
-                      //initState();
                       Provider.of<GetWidget>(context, listen: false)
                           .changeSelectedWidget(2);
                       await getDog(context);
@@ -108,6 +103,8 @@ class OutputPageState extends State<OutputPage> {
               onPressed: () {
                 Provider.of<GetWidget>(context, listen: false)
                     .changeSelectedIndex(0);
+                Provider.of<GetWidget>(context, listen: false).updatLink('');
+                Provider.of<GetWidget>(context, listen: false).updateJoke('');
               },
               child: const Icon(Icons.home),
             ),

@@ -12,18 +12,6 @@ class JokePage extends StatefulWidget {
 }
 
 class _JokePageState extends State<JokePage> {
-  // var jokeFuture = FutureBuilder<JokeModel>(
-  //   future: getJoke(),
-  //   builder: ((context, snapshot) {
-  //     if (snapshot.hasData) {
-  //       return Text(snapshot.data!.randomJoke.toString());
-  //     } else if (snapshot.hasError) {
-  //       return const Text('Error');
-  //     } else {
-  //       return const CircularProgressIndicator();
-  //     }
-  //   }),
-  // );
   @override
   Widget build(BuildContext context) {
     return Text(Provider.of<GetWidget>(context, listen: true).Joke.toString());
