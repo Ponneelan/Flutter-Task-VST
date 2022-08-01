@@ -28,3 +28,4 @@ A new Flutter project.
 -  MediaQuery
 -  Provider
 -  GuestorDetector
+-  Stack
